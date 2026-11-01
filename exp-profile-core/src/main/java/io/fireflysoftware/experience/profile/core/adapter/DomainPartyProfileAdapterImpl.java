@@ -83,9 +83,9 @@ import java.util.UUID;
  */
 @Slf4j
 @org.springframework.boot.autoconfigure.condition.ConditionalOnProperty(name = "firefly.experience.profile.ports.party", havingValue = "domain", matchIfMissing = true)
-@Component
+@Component("domainPartyProfileAdapter")
 @RequiredArgsConstructor
-public class DomainPartyProfileAdapter implements PartyProfilePort {
+public class DomainPartyProfileAdapterImpl implements PartyProfilePort {
 
     private final CustomersApi customersApi;
     private final ConsentCatalogApi consentCatalogApi;
@@ -299,7 +299,7 @@ public class DomainPartyProfileAdapter implements PartyProfilePort {
         // REJECTED — that's the expected default until the user records a
         // choice via PUT /consents/{id}.
         return consentCatalogApi.getConsentCatalog(productCode, UUID.randomUUID().toString())
-                .map(DomainPartyProfileAdapter::toConsentDTO);
+                .map(DomainPartyProfileAdapterImpl::toConsentDTO);
     }
 
     private static ConsentDTO toConsentDTO(ConsentCatalogResponse dto) {

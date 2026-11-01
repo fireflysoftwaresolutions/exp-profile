@@ -33,7 +33,7 @@ import io.fireflysoftware.experience.profile.core.commands.UpdatePersonalDataCom
 import io.fireflysoftware.experience.profile.core.queries.AddressDTO;
 import io.fireflysoftware.experience.profile.core.queries.IdentityDocumentDTO;
 import io.fireflysoftware.experience.profile.core.queries.ProfileDTO;
-import io.fireflysoftware.experience.profile.core.adapter.DomainPartyProfileAdapter;
+import io.fireflysoftware.experience.profile.core.adapter.DomainPartyProfileAdapterImpl;
 import io.fireflysoftware.experience.profile.core.ports.PartyProfilePort;
 import org.fireflyframework.web.error.exceptions.BusinessException;
 import org.junit.jupiter.api.BeforeEach;
@@ -76,7 +76,7 @@ class ProfileServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        service = new DomainPartyProfileAdapter(
+        service = new DomainPartyProfileAdapterImpl(
                 customersApi, consentCatalogApi, contractsApi, partyContactQueriesApi, objectMapper);
         lenient().when(partyContactQueriesApi.getPartyAddresses(any(), any()))
                 .thenReturn(Mono.just(new PaginationResponse()));

@@ -34,13 +34,13 @@ import java.util.UUID;
  * Reads holdings from the contracts domain SDK. Product name and code are filled
  * by that domain from the product core. This journey does not call the product core.
  */
-@Component
-public class HttpContractHoldingsAdapter implements ContractHoldingsPort {
+@Component("httpContractHoldingsAdapter")
+public class HttpContractHoldingsAdapterImpl implements ContractHoldingsPort {
 
     private final ContractsApi contracts;
     private final ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
 
-    public HttpContractHoldingsAdapter(ContractsApi contracts) {
+    public HttpContractHoldingsAdapterImpl(ContractsApi contracts) {
         this.contracts = contracts;
     }
 
